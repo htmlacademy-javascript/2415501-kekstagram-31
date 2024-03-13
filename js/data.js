@@ -72,7 +72,7 @@ const getComments = () => {
 //Создает публикацию
 const createPublication = () => {
   const numberID = createID(1, 25)();
-  const commentsNumber = createID(1,30) ();
+  const commentsNumber = createID(1,30)();
 
   let photo = {
     id: numberID,
