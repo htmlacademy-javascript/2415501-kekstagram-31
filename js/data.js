@@ -1,4 +1,4 @@
-import {getRandomArrayElement, createID, getRandomInteger} from './util.js';
+import {getRandomArrayElement, createNumber, getRandomInteger} from './util.js';
 
 const DESCRIPTIONS = [
   'Иметь мягкое сердце в жестоком мире — это сила, а не слабость',
@@ -57,6 +57,7 @@ const NAMES = [
   'Вячеслав',
   'Василий'
 ];
+const PHOTO_DESCRIPTIONS_COUNT = 25;
 
 //Создает комментарии
 const getComments = () => {
@@ -69,22 +70,25 @@ const getComments = () => {
   return createComment;
 };
 
+const numberID = createNumber(1, 25);
+const photoNumber = createNumber(1, 25);
+const commentsNumber = createNumber(1,30);
+
 //Создает публикацию
 const createPublication = () => {
-  const numberID = createID(1, 25)();
-  const commentsNumber = createID(1,30)();
 
   let photo = {
-    id: numberID,
-    url:`../photos/${numberID}.jpg`,
+    id: numberID(),
+    url:`../photos/${photoNumber()}.jpg`,
     description: getRandomArrayElement(DESCRIPTIONS),
     likes: getRandomInteger(15, 200),
-    comments: Array.from({length: commentsNumber}, getComments),
+    comments: Array.from({length: commentsNumber()}, getComments),
   };
   return photo;
 };
 
 
-const create = Array.from({length:25}, createPublication);
+const create = () => Array.from({length:PHOTO_DESCRIPTIONS_COUNT}, createPublication);
 console.log(create);
 
+export{create}

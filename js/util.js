@@ -8,21 +8,21 @@ const getRandomInteger = (a, b) => {
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-//Генератор уникального ID
-function createID (min, max) {
+//Генератор уникального числа
+function createNumber (min, max) {
   const previousValues = [];
 
-  return function () {
-    let currentValue = getRandomInteger(min, max);
-    if (previousValues.length >= (max - min + 1)) {
-      return null;
-    }
-    while (previousValues.includes(currentValue)) {
-      currentValue = getRandomInteger(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
-  };
+	return function () {
+		let currentValue = getRandomInteger(min, max);
+		if (previousValues.length >= (max - min + 1)) {
+			return null;
+		}
+		while (previousValues.includes(currentValue)) {
+			currentValue = getRandomInteger(min, max);
+		}
+		previousValues.push(currentValue);
+		return currentValue;
+	};
 };
 
-export{getRandomArrayElement, createID, getRandomInteger};
+export{getRandomArrayElement, createNumber, getRandomInteger};
