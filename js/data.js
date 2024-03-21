@@ -66,7 +66,7 @@ const getComments = () => {
     avatar: `../img/avatar-${getRandomInteger(1,6)}.svg`,
     message: getRandomArrayElement(MESSAGES),
     name: getRandomArrayElement(NAMES)
-  }
+  };
   return createComment;
 };
 
@@ -77,7 +77,7 @@ const commentsNumber = createNumber(1,30);
 //Создает публикацию
 const createPublication = () => {
 
-  let photo = {
+  const photo = {
     id: numberID(),
     url:`../photos/${photoNumber()}.jpg`,
     description: getRandomArrayElement(DESCRIPTIONS),
@@ -89,6 +89,5 @@ const createPublication = () => {
 
 
 const create = () => Array.from({length:PHOTO_DESCRIPTIONS_COUNT}, createPublication);
-console.log(create);
 
-export{create}
+export{create};
