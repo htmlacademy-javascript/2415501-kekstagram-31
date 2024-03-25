@@ -24,4 +24,5 @@ function createNumber (min, max) {
   };
 }
 
-export{getRandomArrayElement, createNumber, getRandomInteger};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+export{getRandomArrayElement, createNumber, getRandomInteger, isEscapeKey};

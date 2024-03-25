@@ -75,7 +75,7 @@ const photoNumber = createNumber(1, 25);
 const commentsNumber = createNumber(1,30);
 
 //Создает публикацию
-const createPublication = () => {
+const createPhoto = () => {
 
   const photo = {
     id: numberID(),
@@ -88,6 +88,6 @@ const createPublication = () => {
 };
 
 
-const create = () => Array.from({length:PHOTO_DESCRIPTIONS_COUNT}, createPublication);
+const createPublication = () => Array.from({length:PHOTO_DESCRIPTIONS_COUNT}, createPhoto);
 
-export{create};
+export{createPublication};

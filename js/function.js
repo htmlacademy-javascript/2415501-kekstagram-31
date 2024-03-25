@@ -16,6 +16,8 @@ const workDay = (startTime, endTime, startMeeting, timeMeeting) => {
   }
 };
 
+export {workDay};
+
 // console.log(workDay('08:00', '17:30', '14:00', 90));
 // console.log(workDay('14:00', '17:30', '08:0', 90));
 // console.log(workDay('8:30', '17:30', '08:00', 40));

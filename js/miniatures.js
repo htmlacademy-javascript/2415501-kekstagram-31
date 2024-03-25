@@ -1,19 +1,22 @@
-import {create} from '../js/data.js';
+import {createPublication} from '../js/data.js';
 
-const template = document.querySelector('#picture').content.querySelector('.picture');
+const miniaturesPicture = document.querySelector('#picture').content.querySelector('.picture');
 const pictures = document.querySelector('.pictures');
 
-const createAccount = create();
+const photos = createPublication();
 
 const accountFragment = document.createDocumentFragment();
 
-createAccount.forEach(({url, description, likes, comments}) => {
-  const profile = template.cloneNode(true);
+photos.forEach(({id, url, description, likes, comments}) => {
+  const profile = miniaturesPicture.cloneNode(true);
+  profile.dataset.pictureId = id;
   profile.querySelector('.picture__img').src = url;
   profile.querySelector('.picture__img').alt = description;
   profile.querySelector('.picture__likes').textContent = likes;
-  profile.querySelector('.picture__comments').textContent = comments;
+  profile.querySelector('.picture__comments').textContent = comments.length;
   accountFragment.appendChild(profile);
 });
 
 pictures.appendChild(accountFragment);
+
+export {pictures, photos};
