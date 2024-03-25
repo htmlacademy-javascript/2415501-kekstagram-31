@@ -1,11 +1,11 @@
-import { photos } from "./miniatures.js";
-import {isEscapeKey} from "./util.js";
+import { photos } from './miniatures.js';
+import {isEscapeKey} from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const imgPicture = bigPicture.querySelector('.big-picture__img img');
 const likesCountPicture = bigPicture.querySelector('.likes-count');
-const commentsCountShow =  bigPicture.querySelector('.social__comment-shown-count');
-const commentsCount =  bigPicture.querySelector('.social__comment-count');
+const commentsCountShow = bigPicture.querySelector('.social__comment-shown-count');
+const commentsCount = bigPicture.querySelector('.social__comment-count');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
 const socialComments = bigPicture.querySelector('.social__comments');
 const socialComment = socialComments.querySelector('.social__comment');
@@ -31,7 +31,7 @@ const openBigPicture = (pictureID) => {
   imgPicture.src = currentPicture.url;
   likesCountPicture.textContent = currentPicture.likes;
   commentsCountShow.taxtContent = currentPicture.comments.length;
-  socialComments.innerHTML='';
+  socialComments.innerHTML = '';
 
   currentPicture.comments.forEach((comment) => {
     const commentNode = socialComment.cloneNode(true);
@@ -40,7 +40,7 @@ const openBigPicture = (pictureID) => {
     commentNode.querySelector('.social__text').textContent = comment.message;
 
     socialCommentsFragment.appendChild(commentNode);
-  })
+  });
 
   socialComments.appendChild(socialCommentsFragment);
   descriptionPicture.textContent = currentPicture.description;
@@ -52,7 +52,7 @@ const openBigPicture = (pictureID) => {
 
   bigPictureCancel.addEventListener('click', closeBigPictureClick);
   document.addEventListener('keydown', onDocumentKeydown);
-}
+};
 
 const openPicture = () => {
   pictureList.addEventListener('click', (evt) => {
