@@ -14,9 +14,9 @@ noUiSlider.create(slider, {
   },
   format: {
     to:(value) => Number.isInteger(value)
-    ?value.toFixed(0)
-    :value.toFixed(1),
-    from:(value)  => parseFloat(value),
+      ? value.toFixed(0)
+      : value.toFixed(1),
+    from:(value) => parseFloat(value),
   }
 });
 
@@ -33,7 +33,7 @@ const effectChange = (evt) => {
     effectLevel.classList.add('hidden');
   } else {
     effectLevel.classList.remove('hidden');
-  };
+  }
 
   switch(effect) {
     case 'none':
@@ -79,7 +79,7 @@ const effectChange = (evt) => {
       });
       break;
     case 'phobos':
-       slider.noUiSlider.updateOptions({
+      slider.noUiSlider.updateOptions({
         range: {
           min: 0,
           max: 3,
@@ -87,10 +87,10 @@ const effectChange = (evt) => {
         step:0.1,
         start:0,
       });
-        slider.noUiSlider.on('update', () => {
-          img.style.filter = `blur(${effectValue.value}px)`;
-        });
-        break;
+      slider.noUiSlider.on('update', () => {
+        img.style.filter = `blur(${effectValue.value}px)`;
+      });
+      break;
     case 'heat':
       slider.noUiSlider.updateOptions({
         range: {
