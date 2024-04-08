@@ -1,7 +1,7 @@
 import {isEscapeKey} from './util.js';
 import { effectChange } from './img-effects.js';
 import { addScale, removeScale } from './scale.js';
-import { pristine } from './text-image.js'
+import { pristine } from './text-image.js';
 import { sendData } from './api.js';
 import { disabledButtonSubmit, enableButtonSubmit, submitButtonText, handleErrorMessage, handleSuccessMessage, messageOfError, messageOfSuccess } from './messages.js';
 
@@ -66,9 +66,9 @@ const submitForm = (onSucсess) => {
       hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
       sendData (new FormData(evt.target))
         .then(() =>{
-        onSucсess();
-        messageOfSuccess.classList.remove('hidden');
-        handleSuccessMessage();
+          onSucсess();
+          messageOfSuccess.classList.remove('hidden');
+          handleSuccessMessage();
         })
         .catch(() => {
           messageOfError.classList.remove('hidden');
@@ -76,7 +76,7 @@ const submitForm = (onSucсess) => {
         })
         .finally(() => {
           enableButtonSubmit(submitButtonText.IDLE);
-        })
+        });
     }
     // formPicture.submit();
   });

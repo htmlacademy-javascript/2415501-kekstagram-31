@@ -21,7 +21,7 @@ const renderingThumbnails = (photos) => {
   });
 
   pictures.appendChild(accountFragment);
-}
+};
 
 
 export {photoDesk, renderingThumbnails};

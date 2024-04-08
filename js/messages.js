@@ -1,4 +1,4 @@
-import { isEscapeKey } from "./util";
+import { isEscapeKey } from './util';
 const body = document.querySelector('body');
 const dataError = document.querySelector('#data-error').content;
 const ERROR_TEXT_SHOW_TIME = 5000;
