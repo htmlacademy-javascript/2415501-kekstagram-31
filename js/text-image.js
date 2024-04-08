@@ -31,7 +31,7 @@ const validateHashtag = (value) => {
   const textInputHashtags = value.toLowerCase().trim();
   const textInput = textInputHashtags.split(/\s+/);
 
-  if(textInputHashtags === 0){
+  if(textInputHashtags.length === 0){
     return true;
   }
 
@@ -78,14 +78,4 @@ const validateHashtag = (value) => {
 
 pristine.addValidator(hashtagInput,validateHashtag,error);
 
-const submitForm = () => {
-  formPicture.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    if (pristine.validate()) {
-      hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
-      formPicture.submit();
-    }
-  });
-};
-
-export {submitForm};
+export {pristine};

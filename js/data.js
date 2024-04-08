@@ -1,4 +1,5 @@
 import {getRandomArrayElement, createNumber, getRandomInteger} from './util.js';
+// import { getData } from './api.js';
 
 const DESCRIPTIONS = [
   'Иметь мягкое сердце в жестоком мире — это сила, а не слабость',
