@@ -1,7 +1,9 @@
 import {isEscapeKey} from './util.js';
 import { effectChange } from './img-effects.js';
 import { addScale, removeScale } from './scale.js';
-import { submitForm } from './text-image.js';
+import { pristine } from './text-image.js'
+import { sendData } from './api.js';
+import { disabledButtonSubmit, enableButtonSubmit, submitButtonText, handleErrorMessage, handleSuccessMessage, messageOfError, messageOfSuccess } from './messages.js';
 
 const formPicture = document.querySelector('.img-upload__form');
 const uploadInput = formPicture.querySelector('.img-upload__input');
@@ -36,6 +38,7 @@ function closeForm () {
   uploadInput.value = '';
   img.style.filter = 'none';
   effectLevel.classList.add('hidden');
+  formPicture.reset();
 
   uploadCancel.removeEventListener('click', closeFormClick);
   document.removeEventListener('keydown', onDocumentKeydown);
@@ -54,4 +57,29 @@ uploadInput.addEventListener('change', () => {
 });
 
 
-submitForm ();
+//Отправка формы на сервер
+const submitForm = (onSucсess) => {
+  formPicture.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    if (pristine.validate()) {
+      disabledButtonSubmit(submitButtonText.SENDING);
+      hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
+      sendData (new FormData(evt.target))
+        .then(() =>{
+        onSucсess();
+        messageOfSuccess.classList.remove('hidden');
+        handleSuccessMessage();
+        })
+        .catch(() => {
+          messageOfError.classList.remove('hidden');
+          handleErrorMessage();
+        })
+        .finally(() => {
+          enableButtonSubmit(submitButtonText.IDLE);
+        })
+    }
+    // formPicture.submit();
+  });
+};
+
+export {submitForm, closeForm};

@@ -1,6 +1,7 @@
-import { photos } from './miniatures.js';
+import { photoDesk } from './miniatures.js';
 import {isEscapeKey} from './util.js';
 import { deletedComments, renderNewComments } from './render-comments.js';
+
 
 const bigPicture = document.querySelector('.big-picture');
 const imgPicture = bigPicture.querySelector('.big-picture__img img');
@@ -21,7 +22,7 @@ const closeBigPictureClick = () => {
 };
 
 const openBigPicture = (pictureID) => {
-  const currentPicture = photos.find((photo) => photo.id === Number(pictureID));
+  const currentPicture = photoDesk.find((photo) => photo.id === Number(pictureID));
 
   imgPicture.src = currentPicture.url;
   likesCountPicture.textContent = currentPicture.likes;
