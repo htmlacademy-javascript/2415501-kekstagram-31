@@ -11,7 +11,7 @@ const uploadOverlay = formPicture.querySelector('.img-upload__overlay');
 const uploadCancel = formPicture.querySelector('.img-upload__cancel');
 const hashtagInput = formPicture.querySelector('.text__hashtags');
 const description = formPicture.querySelector('.text__description');
-const img = formPicture.querySelector('.img-upload__preview');
+const img = formPicture.querySelector('.img-upload__preview img');
 const effectList = formPicture.querySelector('.effects__list');
 const effectLevel = formPicture.querySelector('.img-upload__effect-level');
 const effectsItemFirst = effectList.children[0];
@@ -32,7 +32,6 @@ const onDocumentKeydown = (evt) => {
 };
 
 const closeFormClick = () => {
-  formPicture.reset();
   closeForm();
 };
 
@@ -42,13 +41,14 @@ function closeForm () {
   uploadInput.value = '';
   hashtagInput.value = '';
   description.value = '';
-  pristine.reset();
   img.style.filter = 'none';
+  inputOriginalEffect.checked = true;
+  pristine.reset();
   effectLevel.classList.add('hidden');
   uploadCancel.removeEventListener('click', closeFormClick);
   document.removeEventListener('keydown', onDocumentKeydown);
   removeScale();
-  inputOriginalEffect.checked = true;
+  formPicture.reset();
 }
 
 
@@ -58,11 +58,9 @@ uploadInput.addEventListener('change', () => {
   uploadOverlay.classList.remove('hidden');
   effectList.addEventListener('click', effectChange);
   addScale();
-
   uploadCancel.addEventListener('click', closeFormClick);
   document.addEventListener('keydown', onDocumentKeydown);
 });
-
 
 //Отправка формы на сервер
 const submitForm = (onSucсess) => {
