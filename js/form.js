@@ -62,7 +62,6 @@ uploadInput.addEventListener('change', () => {
   document.addEventListener('keydown', onDocumentKeydown);
 });
 
-
 //Отправка формы на сервер
 const submitForm = (onSucсess) => {
   formPicture.addEventListener('submit', (evt) => {
