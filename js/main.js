@@ -6,6 +6,7 @@ import { getData } from '../js/api.js';
 import { renderingThumbnails } from '../js/miniatures.js';
 import { showErrorMessage } from './messages.js';
 import { configFilter } from './filters.js';
+import { choosePhoto } from './photos.js'
 
 getData()
   .then((photos) => {
@@ -19,5 +20,5 @@ getData()
 const filters = document.querySelector('.img-filters');
 filters.classList.remove('img-filters--inactive');
 openPicture();
-
+choosePhoto();
 submitForm (closeForm);
