@@ -113,8 +113,6 @@ function removeErrorListeners () {
   document.removeEventListener('keydown', closeErrorByKeydown);
   errorButton.removeEventListener('click', byErrorButton);
 }
-
-
 export {showErrorMessage, disabledButtonSubmit, enableButtonSubmit, submitButtonText, handleErrorMessage, handleSuccessMessage, messageOfError, messageOfSuccess};
 
 
