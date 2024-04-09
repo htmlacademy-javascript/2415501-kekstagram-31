@@ -5,11 +5,12 @@ const formPicture = document.querySelector('.img-upload__form');
 const hashtagInput = formPicture.querySelector('.text__hashtags');
 const description = formPicture.querySelector('.text__description');
 
-const pristine = new Pristine(formPicture, {
+const pristine = new Pristine (formPicture, {
   classTo: 'img-upload__field-wrapper',
-  errorclass: 'img-upload__field-wrapper--error',
+  errorClass: 'img-upload__field-wrapper--error',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextTag: 'div',
+  errorTextClass: 'text__error'
 });
 
 //Валидатор описания картинки

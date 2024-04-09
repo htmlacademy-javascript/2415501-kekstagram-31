@@ -19,7 +19,7 @@ const imgFilters = document.querySelector('.img-filters');
 
 let pictures = [];
 let filterActive = FILTERS.default;
-
+imgFilters.classList.add('hidden');
 const useFilters = () => {
   let filteringPictures = [];
 
@@ -58,6 +58,7 @@ const changingFilter = (evt) => {
 function configFilter (picturesData) {
   imgFilters.classList.remove('img-filters--inactive');
   imgFilters.addEventListener('click', changingFilter);
+  imgFilters.classList.remove('hidden');
   pictures = picturesData;
 }
 
