@@ -3,7 +3,7 @@ const effects = document.querySelector('.img-upload__wrapper');
 const effectLevel = effects.querySelector('.img-upload__effect-level');
 const slider = effects.querySelector('.effect-level__slider');
 const effectValue = effects.querySelector('.effect-level__value');
-const img = effects.querySelector('.img-upload__preview');
+const img = effects.querySelector('.img-upload__preview img');
 
 noUiSlider.create(slider, {
   start: 1,
@@ -46,7 +46,7 @@ const effectChange = (evt) => {
           max: 1,
         },
         step:0.1,
-        start:0,
+        start:1,
       });
       slider.noUiSlider.on('update', () => {
         img.style.filter = `grayscale(${effectValue.value})`;
@@ -59,7 +59,7 @@ const effectChange = (evt) => {
           max: 1,
         },
         step:0.1,
-        start:0,
+        start:1,
       });
       slider.noUiSlider.on('update', () => {
         img.style.filter = `sepia(${effectValue.value})`;
@@ -72,7 +72,7 @@ const effectChange = (evt) => {
           max: 100,
         },
         step:1,
-        start:0,
+        start:100,
       });
       slider.noUiSlider.on('update', () => {
         img.style.filter = `invert(${effectValue.value}%)`;
@@ -85,7 +85,7 @@ const effectChange = (evt) => {
           max: 3,
         },
         step:0.1,
-        start:0,
+        start:3,
       });
       slider.noUiSlider.on('update', () => {
         img.style.filter = `blur(${effectValue.value}px)`;
@@ -98,7 +98,7 @@ const effectChange = (evt) => {
           max: 3,
         },
         step:0.1,
-        start:0,
+        start:3,
       });
       slider.noUiSlider.on('update', () => {
         img.style.filter = `brightness(${effectValue.value})`;

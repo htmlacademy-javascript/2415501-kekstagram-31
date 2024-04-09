@@ -1,4 +1,4 @@
-import { isEscapeKey } from './util.js';
+import { isEscapeKey } from './util';
 const body = document.querySelector('body');
 const dataError = document.querySelector('#data-error').content;
 const ERROR_TEXT_SHOW_TIME = 5000;
@@ -7,6 +7,7 @@ const formPicture = document.querySelector('.img-upload__form');
 const buttonSubmit = formPicture.querySelector('.img-upload__submit');
 const successMessage = body.querySelector('#success').content;
 const errorMessage = body.querySelector('#error').content;
+const imgUpploadOverlay = formPicture.querySelector('.img-upload__overlay');
 
 //Пoказывает сообщение ошибки при загрузки с сервера
 const showErrorMessage = (message) => {
@@ -53,38 +54,39 @@ const errorButton = errorInner.querySelector('.error__button');
 
 const closeSuccessfulByClick = (evt) => {
   if (messageOfSuccess === evt.target) {
-    messageOfSuccess.classList.add('hidden');
+    messageOfSuccess.remove();
   }
 };
 
 const closeErrorByClick = function (evt) {
   if (messageOfError === evt.target) {
-    messageOfError.classList.add('hidden');
+    messageOfError.remove();
     removeErrorListeners();
   }
 };
 
 const closeSuccessfulByKeydown = function (keydownEvt) {
   if (isEscapeKey(keydownEvt)) {
-    messageOfSuccess.classList.add('hidden');
+    messageOfSuccess.remove();
     removeSuccessListeners();
   }
 };
 
 const closeErrorByKeydown = function (keydownEvt) {
   if (isEscapeKey(keydownEvt)) {
-    messageOfError.classList.add('hidden');
+    messageOfError.remove();
     removeErrorListeners();
+    imgUpploadOverlay.classList.remove('hidden');
   }
 };
 
 const bySuccessButton = () => {
-  messageOfSuccess.classList.add('hidden');
+  messageOfSuccess.remove();
   removeSuccessListeners();
 };
 
 const byErrorButton = () => {
-  messageOfError.classList.add('hidden');
+  messageOfError.remove();
   removeErrorListeners();
 };
 
