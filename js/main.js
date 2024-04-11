@@ -1,5 +1,5 @@
-import { submitForm, closeForm } from './form.js';
-import { openPicture, renderingThumbnails } from './image.js';
+import {submitForm, closeForm} from './form.js';
+import { openPicture, renderingThumbnails} from './image.js';
 import { getData } from './api.js';
 import { showErrorMessage } from './messages.js';
 import { configFilter } from './filters.js';
