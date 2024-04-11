@@ -1,9 +1,9 @@
 import {isEscapeKey} from './util.js';
-import { changEffect } from './img-effects.js';
+import { changeEffect } from './img-effects.js';
 import { addScale, removeScale, resetScale } from './scale.js';
 import { pristine } from './text-image.js';
 import { sendData } from './api.js';
-import { disabledButtonSubmit, enabledButtonSubmit, submitButtonText, handleErrorMessage, handleSuccessMessage, messageOfError, messageOfSuccess } from './messages.js';
+import { disabledButtonSubmit, enabledButtonSubmit, submitButtonText, addErrorMessage, addSuccessMessage } from './messages.js';
 
 const formPicture = document.querySelector('.img-upload__form');
 const uploadInput = formPicture.querySelector('.img-upload__input');
@@ -12,12 +12,13 @@ const uploadCancel = formPicture.querySelector('.img-upload__cancel');
 const hashtagInput = formPicture.querySelector('.text__hashtags');
 const descriptionInput = formPicture.querySelector('.text__description');
 const img = formPicture.querySelector('.img-upload__preview img');
-const effectsList = formPicture.querySelector('.effects__list');
+const effectList = formPicture.querySelector('.effects__list');
 const effectLevel = formPicture.querySelector('.img-upload__effect-level');
-const effectsItemFirst = effectsList.children[0];
+const effectsItemFirst = effectList.children[0];
 const inputOriginalEffect = effectsItemFirst.querySelector('input');
 
 //Закрытие формы для загрузки фотографий
+
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
@@ -50,6 +51,7 @@ function closeForm () {
     uploadInput.value = '';
     hashtagInput.value = '';
     descriptionInput.value = '';
+    inputOriginalEffect.checked = true;
     img.style.filter = 'none';
   } else {
     addScale();
@@ -61,13 +63,11 @@ function closeForm () {
 uploadInput.addEventListener('change', () => {
   document.body.classList.add('modal-open');
   uploadOverlay.classList.remove('hidden');
-  effectsList.addEventListener('click', changEffect);
+  effectList.addEventListener('click', changeEffect);
   addScale();
-  inputOriginalEffect.checked = true;
   uploadCancel.addEventListener('click', closeFormClick);
   document.addEventListener('keydown', onDocumentKeydown);
 });
-
 
 //Отправка формы на сервер
 const submitForm = (onSucсess) => {
@@ -79,12 +79,10 @@ const submitForm = (onSucсess) => {
       sendData (new FormData(evt.target))
         .then(() =>{
           onSucсess();
-          messageOfSuccess.classList.remove('hidden');
-          handleSuccessMessage();
+          addSuccessMessage();
         })
         .catch(() => {
-          messageOfError.classList.remove('hidden');
-          handleErrorMessage();
+          addErrorMessage();
         })
         .finally(() => {
           enabledButtonSubmit(submitButtonText.IDLE);

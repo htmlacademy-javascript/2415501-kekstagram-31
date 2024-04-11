@@ -26,7 +26,7 @@ slider.noUiSlider.on('update', () => {
 
 effectLevel.classList.add('hidden');
 
-const changEffect = (evt) => {
+const changeEffect = (evt) => {
   const effect = evt.target.value;
 
   if (effect === 'none') {
@@ -108,4 +108,4 @@ const changEffect = (evt) => {
 
 };
 
-export {changEffect};
+export {changeEffect};
