@@ -1,4 +1,4 @@
-import { renderingThumbnails } from './miniatures.js';
+import { renderingThumbnails } from './image.js';
 
 const conteinerPictures = document.querySelector('.pictures');
 

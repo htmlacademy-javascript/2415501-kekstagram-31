@@ -1,5 +1,4 @@
-import { photoDesk } from './miniatures.js';
-import {isEscapeKey} from './util.js';
+import { isEscapeKey } from './util.js';
 import { deletedComments, renderNewComments } from './render-comments.js';
 
 
@@ -9,6 +8,26 @@ const likesCountPicture = bigPicture.querySelector('.likes-count');
 const descriptionPicture = document.querySelector('.social__caption');
 const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
 const pictureList = document.querySelector('.pictures');
+const miniaturesPicture = document.querySelector('#picture').content.querySelector('.picture');
+
+let photoDesk;
+
+const renderingThumbnails = (photos) => {
+  const accountFragment = document.createDocumentFragment();
+  photoDesk = photos;
+
+  photos.forEach(({id, url, description, likes, comments}) => {
+    const profile = miniaturesPicture.cloneNode(true);
+    profile.dataset.pictureId = id;
+    profile.querySelector('.picture__img').src = url;
+    profile.querySelector('.picture__img').alt = description;
+    profile.querySelector('.picture__likes').textContent = likes;
+    profile.querySelector('.picture__comments').textContent = comments.length;
+    accountFragment.appendChild(profile);
+  });
+
+  pictureList.appendChild(accountFragment);
+};
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -53,4 +72,4 @@ function closeBigPicture () {
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
-export {openPicture};
+export {openPicture, renderingThumbnails};

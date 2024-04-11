@@ -1,7 +1,7 @@
 import { createPictures } from './render-publication.js';
 import { debounce } from './util.js';
 
-const MAX_PICTURE = 10;
+const MAX_PICTURES_NUMBER = 10;
 const ACTIVE_BUTTON = 'img-filters__button--active';
 const FILTERS = {
   default: 'filter-default',
@@ -20,6 +20,7 @@ const imgFilters = document.querySelector('.img-filters');
 let pictures = [];
 let filterActive = FILTERS.default;
 imgFilters.classList.add('hidden');
+
 const useFilters = () => {
   let filteringPictures = [];
 
@@ -28,7 +29,7 @@ const useFilters = () => {
       filteringPictures = pictures;
       break;
     case FILTERS.random:
-      filteringPictures = pictures.toSorted(SORTFUNCTION.random).slice(0, MAX_PICTURE);
+      filteringPictures = pictures.toSorted(SORTFUNCTION.random).slice(0, MAX_PICTURES_NUMBER);
       break;
     case FILTERS.discussed:
       filteringPictures = pictures.toSorted(SORTFUNCTION.discussed);
