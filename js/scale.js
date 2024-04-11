@@ -26,8 +26,6 @@ const onBiggerButton = () => {
 };
 
 function addScale () {
-  controlValue.value = '100%';
-  img.style.transform = 'scale(1)';
   controlSmaller.addEventListener('click', onSmallerButton);
   controlBigger.addEventListener('click', onBiggerButton);
 }
@@ -37,4 +35,10 @@ function removeScale () {
   controlBigger.removeEventListener('click', onBiggerButton);
 }
 
-export {addScale, removeScale};
+const resetScale = () => {
+  scale = 1;
+  controlValue.value = '100%';
+  img.style.transform = 'scale(1)';
+};
+
+export {addScale, removeScale, resetScale};

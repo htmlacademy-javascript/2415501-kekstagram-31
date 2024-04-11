@@ -3,7 +3,7 @@ const MAX_HASHTAGS = 5;
 
 const formPicture = document.querySelector('.img-upload__form');
 const hashtagInput = formPicture.querySelector('.text__hashtags');
-const description = formPicture.querySelector('.text__description');
+const descriptionInput = formPicture.querySelector('.text__description');
 
 const pristine = new Pristine (formPicture, {
   classTo: 'img-upload__field-wrapper',
@@ -15,7 +15,7 @@ const pristine = new Pristine (formPicture, {
 
 //Валидатор описания картинки
 pristine.addValidator(
-  description, (value) => {
+  descriptionInput, (value) => {
     const hasNumber = value.length <= 140;
     return hasNumber;
   },

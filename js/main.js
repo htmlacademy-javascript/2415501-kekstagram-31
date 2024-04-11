@@ -1,9 +1,6 @@
-import '../js/miniatures.js';
-import {submitForm, closeForm} from '../js/form.js';
-import {openPicture} from './big-image.js';
-import '../js/api.js';
-import { getData } from '../js/api.js';
-import { renderingThumbnails } from '../js/miniatures.js';
+import { submitForm, closeForm } from './form.js';
+import { openPicture, renderingThumbnails } from './image.js';
+import { getData } from './api.js';
 import { showErrorMessage } from './messages.js';
 import { configFilter } from './filters.js';
 import { choosePhoto } from './photos.js';

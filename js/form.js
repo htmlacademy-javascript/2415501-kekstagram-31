@@ -1,28 +1,27 @@
 import {isEscapeKey} from './util.js';
-import { effectChange } from './img-effects.js';
-import { addScale, removeScale } from './scale.js';
+import { changEffect } from './img-effects.js';
+import { addScale, removeScale, resetScale } from './scale.js';
 import { pristine } from './text-image.js';
 import { sendData } from './api.js';
-import { disabledButtonSubmit, enableButtonSubmit, submitButtonText, handleErrorMessage, handleSuccessMessage, messageOfError, messageOfSuccess } from './messages.js';
+import { disabledButtonSubmit, enabledButtonSubmit, submitButtonText, handleErrorMessage, handleSuccessMessage, messageOfError, messageOfSuccess } from './messages.js';
 
 const formPicture = document.querySelector('.img-upload__form');
 const uploadInput = formPicture.querySelector('.img-upload__input');
 const uploadOverlay = formPicture.querySelector('.img-upload__overlay');
 const uploadCancel = formPicture.querySelector('.img-upload__cancel');
 const hashtagInput = formPicture.querySelector('.text__hashtags');
-const description = formPicture.querySelector('.text__description');
+const descriptionInput = formPicture.querySelector('.text__description');
 const img = formPicture.querySelector('.img-upload__preview img');
-const effectList = formPicture.querySelector('.effects__list');
+const effectsList = formPicture.querySelector('.effects__list');
 const effectLevel = formPicture.querySelector('.img-upload__effect-level');
-const effectsItemFirst = effectList.children[0];
+const effectsItemFirst = effectsList.children[0];
 const inputOriginalEffect = effectsItemFirst.querySelector('input');
 
 //Закрытие формы для загрузки фотографий
-
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    if(document.activeElement === hashtagInput || document.activeElement === description) {
+    if(document.activeElement === hashtagInput || document.activeElement === descriptionInput) {
       evt.stopPropagation();
     } else {
       formPicture.reset();
@@ -38,17 +37,23 @@ const closeFormClick = () => {
 function closeForm () {
   document.body.classList.remove('modal-open');
   uploadOverlay.classList.add('hidden');
-  uploadInput.value = '';
-  hashtagInput.value = '';
-  description.value = '';
-  img.style.filter = 'none';
-  inputOriginalEffect.checked = true;
-  pristine.reset();
   effectLevel.classList.add('hidden');
+
   uploadCancel.removeEventListener('click', closeFormClick);
   document.removeEventListener('keydown', onDocumentKeydown);
-  removeScale();
+  resetScale();
+  pristine.reset();
   formPicture.reset();
+
+  if (closeForm) {
+    removeScale();
+    uploadInput.value = '';
+    hashtagInput.value = '';
+    descriptionInput.value = '';
+    img.style.filter = 'none';
+  } else {
+    addScale();
+  }
 }
 
 
@@ -56,11 +61,13 @@ function closeForm () {
 uploadInput.addEventListener('change', () => {
   document.body.classList.add('modal-open');
   uploadOverlay.classList.remove('hidden');
-  effectList.addEventListener('click', effectChange);
+  effectsList.addEventListener('click', changEffect);
   addScale();
+  inputOriginalEffect.checked = true;
   uploadCancel.addEventListener('click', closeFormClick);
   document.addEventListener('keydown', onDocumentKeydown);
 });
+
 
 //Отправка формы на сервер
 const submitForm = (onSucсess) => {
@@ -80,7 +87,7 @@ const submitForm = (onSucсess) => {
           handleErrorMessage();
         })
         .finally(() => {
-          enableButtonSubmit(submitButtonText.IDLE);
+          enabledButtonSubmit(submitButtonText.IDLE);
         });
     }
   });

@@ -12,10 +12,10 @@ socialComments.innerHTML = '';
 
 const renderCommentsNext = () => {
   const socialCommentsFragment = document.createDocumentFragment();
-  const renderComment = comments.slice(currentCount, currentCount + COUNT_STEP);
-  const renderCommentLength = renderComment.length + currentCount;
+  const pictureComments = comments.slice(currentCount, currentCount + COUNT_STEP);
+  const pictureCommentsLength = pictureComments .length + currentCount;
 
-  renderComment.forEach((comment) => {
+  pictureComments.forEach((comment) => {
     const commentNode = socialComment.cloneNode(true);
     commentNode.querySelector('.social__picture').src = comment.avatar;
     commentNode.querySelector('.social__picture').alt = comment.name;
@@ -25,10 +25,10 @@ const renderCommentsNext = () => {
   });
 
   socialComments.appendChild(socialCommentsFragment);
-  commentsCountShow.textContent = renderCommentLength;
+  commentsCountShow.textContent = pictureCommentsLength;
   commentsTotalCount.textContent = comments.length;
 
-  if(renderCommentLength >= comments.length){
+  if(pictureCommentsLength >= comments.length){
     commentsLoader.classList.add('hidden');
   }
 

@@ -35,7 +35,7 @@ const disabledButtonSubmit = (text) => {
   buttonSubmit.textContent = text;
 };
 
-const enableButtonSubmit = (text) => {
+const enabledButtonSubmit = (text) => {
   buttonSubmit.disabled = false;
   buttonSubmit.textContent = text;
 };
@@ -54,39 +54,39 @@ const errorButton = errorInner.querySelector('.error__button');
 
 const closeSuccessfulByClick = (evt) => {
   if (messageOfSuccess === evt.target) {
-    messageOfSuccess.remove();
+    messageOfSuccess.classList.add('hidden');
   }
 };
 
 const closeErrorByClick = function (evt) {
   if (messageOfError === evt.target) {
-    messageOfError.remove();
+    messageOfError.classList.add('hidden');
     removeErrorListeners();
   }
 };
 
 const closeSuccessfulByKeydown = function (keydownEvt) {
   if (isEscapeKey(keydownEvt)) {
-    messageOfSuccess.remove();
+    messageOfSuccess.classList.add('hidden');
     removeSuccessListeners();
   }
 };
 
 const closeErrorByKeydown = function (keydownEvt) {
   if (isEscapeKey(keydownEvt)) {
-    messageOfError.remove();
+    messageOfError.classList.add('hidden');
     removeErrorListeners();
     imgUpploadOverlay.classList.remove('hidden');
   }
 };
 
 const bySuccessButton = () => {
-  messageOfSuccess.remove();
+  messageOfSuccess.classList.add('hidden');
   removeSuccessListeners();
 };
 
 const byErrorButton = () => {
-  messageOfError.remove();
+  messageOfError.classList.add('hidden');
   removeErrorListeners();
 };
 
@@ -113,6 +113,6 @@ function removeErrorListeners () {
   document.removeEventListener('keydown', closeErrorByKeydown);
   errorButton.removeEventListener('click', byErrorButton);
 }
-export {showErrorMessage, disabledButtonSubmit, enableButtonSubmit, submitButtonText, handleErrorMessage, handleSuccessMessage, messageOfError, messageOfSuccess};
+export {showErrorMessage, disabledButtonSubmit, enabledButtonSubmit, submitButtonText, handleErrorMessage, handleSuccessMessage, messageOfError, messageOfSuccess};
 
 
